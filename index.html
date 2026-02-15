@@ -64,6 +64,23 @@ html, body {
     <source src="music.mp3" type="audio/mpeg">
 </audio>
 
+<script>
+const music = document.getElementById("music");
+
+/* Force autoplay on load */
+window.addEventListener("load", () => {
+    const playPromise = music.play();
+    if (playPromise !== undefined) {
+        playPromise.catch(() => {
+            document.body.addEventListener("click", () => {
+                music.play();
+            }, { once: true });
+        });
+    }
+});
+</script>
+
+
 <!-- Loader -->
 <div id="loader">
     <div class="loader-heart">❤️</div>
