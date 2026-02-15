@@ -13,10 +13,6 @@
 <div class="app">
   <img src="bg.jpg" class="bg">
 
-  <audio id="music" loop autoplay>
-    <source src="../music.mp3" type="audio/mpeg">
-  </audio>
-
   <!-- COVER -->
   <div id="cover" class="slide show cover">
       <button class="openBtn" onclick="openSite()">💌</button>
@@ -42,7 +38,7 @@
     <button onclick="goYes()">Okay okay, show me 😅</button>
   </div>
 
-  <!-- YES SLIDE -->
+  <!-- YES SLIDE (FIXED LAYOUT) -->
   <div id="yesSlide" class="slide yesLayout">
 
     <h1 class="yesHeading">Before we go ahead… I need to say something.</h1>
@@ -62,11 +58,9 @@
                  and remind you how much us means to me.<br>
                  Today and always — I choose you. 🤍
                 </p>
-
                 <button onclick="parent.goToStage('memories')">
                   Next ➜
                 </button>
-
             </div>
         </div>
 
