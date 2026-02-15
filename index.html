@@ -59,8 +59,8 @@ html, body {
 
 <body>
 
-<!-- 🎵 AUDIO -->
-<audio id="music" loop preload="auto">
+<!-- 🎵 AUDIO (Autoplay Safe Version) -->
+<audio id="music" loop autoplay muted playsinline preload="auto">
     <source src="music.mp3" type="audio/mpeg">
 </audio>
 
@@ -77,26 +77,17 @@ const music = document.getElementById("music");
 const frame = document.getElementById("stageFrame");
 const loader = document.getElementById("loader");
 
-/* ===== MUSIC FIX ===== */
-
-function startMusicOnce(){
-    music.play().catch(() => {});
-    document.removeEventListener("click", startMusicOnce);
-    document.removeEventListener("touchstart", startMusicOnce);
-}
-
-document.addEventListener("click", startMusicOnce);
-document.addEventListener("touchstart", startMusicOnce);
-
-/* Try autoplay immediately */
-window.addEventListener("load", () => {
-    music.play().catch(() => {
-        // silently fallback to interaction
-    });
+/* ===== PERFECT AUTOPLAY FIX ===== */
+window.addEventListener("load", async () => {
+    try {
+        await music.play();   // allowed because muted
+        music.muted = false;  // unmute after playback starts
+    } catch (err) {
+        console.log("Autoplay blocked:", err);
+    }
 });
 
 /* ===== STAGE SWITCHING ===== */
-
 function goToStage(stageName){
 
     loader.classList.remove("hidden");
