@@ -59,27 +59,10 @@ html, body {
 
 <body>
 
-<!-- 🎵 AUDIO (MOVED FROM INTRO, SAME BEHAVIOR) -->
+<!-- 🎵 GLOBAL MUSIC -->
 <audio id="music" loop autoplay>
     <source src="music.mp3" type="audio/mpeg">
 </audio>
-
-<script>
-const music = document.getElementById("music");
-
-/* Force autoplay on load */
-window.addEventListener("load", () => {
-    const playPromise = music.play();
-    if (playPromise !== undefined) {
-        playPromise.catch(() => {
-            document.body.addEventListener("click", () => {
-                music.play();
-            }, { once: true });
-        });
-    }
-});
-</script>
-
 
 <!-- Loader -->
 <div id="loader">
@@ -92,17 +75,23 @@ window.addEventListener("load", () => {
 <script>
 const frame = document.getElementById("stageFrame");
 const loader = document.getElementById("loader");
+const music = document.getElementById("music");
 
-/* Same logic as intro stage */
-const music = document.getElementById('music');
+/* ===== MUSIC AUTOPLAY FIX ===== */
+window.addEventListener("load", () => {
+    const playPromise = music.play();
 
-function startMusic(){
-    music.play().catch(()=>{});
-}
+    if (playPromise !== undefined) {
+        playPromise.catch(() => {
+            // If autoplay blocked, start on first user interaction
+            document.body.addEventListener("click", () => {
+                music.play();
+            }, { once: true });
+        });
+    }
+});
 
-document.body.addEventListener('pointerdown', startMusic, {once:true});
-
-/* Stage switching */
+/* ===== STAGE SWITCHING ===== */
 function goToStage(stageName){
 
     loader.classList.remove("hidden");
