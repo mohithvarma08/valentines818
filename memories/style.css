@@ -142,3 +142,26 @@ h1{
         grid-template-columns:1fr;
     }
 }
+
+/* ===== NEXT BUTTON (Styled to Match Other Stages) ===== */
+
+.memories-next-container{
+    text-align:center;
+    margin-top:70px;
+}
+
+.memoriesNext{
+    padding:14px 45px;
+    font-size:18px;
+    border:none;
+    border-radius:30px;
+    background:#ff2f7d;
+    color:white;
+    cursor:pointer;
+    box-shadow:0 10px 30px rgba(255,47,125,0.4);
+    transition:0.3s ease;
+}
+
+.memoriesNext:hover{
+    transform:translateY(-3px);
+}
