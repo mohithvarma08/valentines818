@@ -1,10 +1,3 @@
-const music=document.getElementById('music');
-
-function startMusic(){
-  music.play().catch(()=>{});
-}
-document.body.addEventListener('pointerdown', startMusic, {once:true});
-
 function show(id){
   document.querySelectorAll('.slide').forEach(s=>s.classList.remove('show'));
   setTimeout(()=>{
@@ -17,7 +10,6 @@ window.onload=()=>{
 };
 
 function openSite(){
-  startMusic();
   show('intro');
 }
 
