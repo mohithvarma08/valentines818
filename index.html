@@ -23,7 +23,6 @@ html, body {
     transition:opacity 0.6s ease;
 }
 
-/* Fade */
 .fade-out {
     opacity:0;
 }
@@ -60,8 +59,8 @@ html, body {
 
 <body>
 
-<!-- Persistent Music -->
-<audio id="bgMusic" loop>
+<!-- 🎵 AUDIO (MOVED FROM INTRO, SAME BEHAVIOR) -->
+<audio id="music" loop autoplay>
     <source src="music.mp3" type="audio/mpeg">
 </audio>
 
@@ -76,12 +75,17 @@ html, body {
 <script>
 const frame = document.getElementById("stageFrame");
 const loader = document.getElementById("loader");
-const music = document.getElementById("bgMusic");
 
-document.body.addEventListener("pointerdown",()=>{
+/* Same logic as intro stage */
+const music = document.getElementById('music');
+
+function startMusic(){
     music.play().catch(()=>{});
-},{once:true});
+}
 
+document.body.addEventListener('pointerdown', startMusic, {once:true});
+
+/* Stage switching */
 function goToStage(stageName){
 
     loader.classList.remove("hidden");
