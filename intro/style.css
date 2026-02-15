@@ -1,0 +1,135 @@
+*{margin:0;padding:0;box-sizing:border-box}
+
+html,body{
+  height:100%;
+  overflow:hidden;
+  font-family:'Crimson Text',serif;
+  font-weight:600;
+}
+
+.app{
+  position:relative;
+  width:100vw;
+  height:100vh;
+}
+
+.bg{
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  z-index:0;
+}
+
+/* Slides */
+.slide{
+  position:absolute;
+  inset:0;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  flex-direction:column;
+  text-align:center;
+  z-index:2;
+
+  opacity:0;
+  transform:translateY(40px) scale(0.96);
+  pointer-events:none;
+
+  transition:opacity 1.2s ease, transform 1.2s ease;
+
+  gap:12px;
+  padding:30px 60px;
+}
+
+.slide.show{
+  opacity:1;
+  transform:translateY(0) scale(1);
+  pointer-events:auto;
+}
+
+.cover{
+  background:rgba(255,255,255,0.25);
+  backdrop-filter:blur(12px);
+}
+
+.openBtn{
+  font-size:60px;
+  background:white;
+  border:none;
+  border-radius:50%;
+  padding:25px;
+  cursor:pointer;
+  box-shadow:0 20px 50px rgba(0,0,0,.25);
+  animation:breath 2.4s ease-in-out infinite;
+}
+
+@keyframes breath{
+  0%,100%{transform:scale(1)}
+  50%{transform:scale(1.18)}
+}
+
+.tapText{
+  margin-top:20px;
+  font-size:1.4rem;
+  color:#c2185b;
+}
+
+h1{
+  font-family:'Dancing Script',cursive;
+  font-size:3.9rem;
+  color:#c2185b;
+}
+
+p{
+  font-size:1.6rem;
+  margin:10px 0;
+  color:#5a3a44;
+  line-height:1.7;
+}
+
+.sticker{
+  width:360px;
+  margin:8px 0;
+  filter:drop-shadow(0 30px 50px rgba(0,0,0,.25));
+  animation:float 5s ease-in-out infinite;
+}
+
+@keyframes float{
+  0%,100%{transform:translateY(0)}
+  50%{transform:translateY(-10px)}
+}
+
+button{
+  padding:14px 40px;
+  border:none;
+  border-radius:30px;
+  background:#ff4f7b;
+  color:white;
+  font-size:1.05rem;
+  cursor:pointer;
+  margin:12px;
+  box-shadow:0 10px 25px rgba(0,0,0,.2);
+}
+
+/* Yes Layout */
+.yesLayout{
+  justify-content:center;
+}
+
+.yesContent{
+  display:flex;
+  align-items:center;
+  gap:60px;
+}
+
+.cardInner{
+  background:rgba(255,255,255,0.85);
+  backdrop-filter:blur(12px);
+  padding:40px 45px;
+  border-radius:25px;
+  box-shadow:0 30px 60px rgba(0,0,0,0.25);
+  max-width:520px;
+  text-align:left;
+}
