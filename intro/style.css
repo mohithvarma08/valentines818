@@ -49,6 +49,7 @@ html,body{
   pointer-events:auto;
 }
 
+/* Cover */
 .cover{
   background:rgba(255,255,255,0.25);
   backdrop-filter:blur(12px);
@@ -80,6 +81,7 @@ h1{
   font-family:'Dancing Script',cursive;
   font-size:3.9rem;
   color:#c2185b;
+  margin-bottom:4px;
 }
 
 p{
@@ -113,15 +115,37 @@ button{
   box-shadow:0 10px 25px rgba(0,0,0,.2);
 }
 
-/* Yes Layout */
+/* YES SLIDE SPECIAL LAYOUT */
+
 .yesLayout{
   justify-content:center;
+  padding-top:0;
+}
+
+.yesHeading{
+  margin-bottom:15px;
 }
 
 .yesContent{
+  width:100%;
+  height:65%;
   display:flex;
   align-items:center;
-  gap:60px;
+  justify-content:center;
+  gap:80px;
+  padding:0 100px;
+}
+
+.leftSticker{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+
+.rightCard{
+  display:flex;
+  align-items:center;
+  justify-content:center;
 }
 
 .cardInner{
@@ -132,4 +156,8 @@ button{
   box-shadow:0 30px 60px rgba(0,0,0,0.25);
   max-width:520px;
   text-align:left;
+}
+
+.cardInner p{
+  color:#5a3a44;
 }
