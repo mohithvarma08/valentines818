@@ -3,23 +3,43 @@ function showSlide(id){
   document.getElementById(id).classList.add("active");
 }
 
-/* Envelope click */
-document.getElementById("openEnvelope").onclick = function(){
-  showSlide("loveLetter");
-};
+/* Wait for DOM */
+document.addEventListener("DOMContentLoaded", function(){
 
-/* To Proposal */
-document.getElementById("toProposal").onclick = function(){
-  showSlide("proposalSlide");
-};
+  /* Envelope click */
+  const envelope = document.getElementById("openEnvelope");
+  if(envelope){
+    envelope.onclick = function(){
+      showSlide("loveLetter");
+    };
+  }
 
-/* Yes buttons */
-document.getElementById("yesBtn").onclick = celebrate;
-document.getElementById("yesBtn2").onclick = celebrate;
+  /* To Proposal */
+  const toProposal = document.getElementById("toProposal");
+  if(toProposal){
+    toProposal.onclick = function(){
+      showSlide("proposalSlide");
+    };
+  }
 
+  /* Yes buttons */
+  const yesBtn = document.getElementById("yesBtn");
+  const yesBtn2 = document.getElementById("yesBtn2");
+
+  if(yesBtn) yesBtn.onclick = celebrate;
+  if(yesBtn2) yesBtn2.onclick = celebrate;
+
+});
+
+/* Celebration */
 function celebrate(){
   showSlide("celebrationSlide");
   launchConfetti();
+
+  /* Optional: after celebration, go nowhere (final stage)
+     If you ever want to restart:
+     setTimeout(()=> parent.goToStage("intro"), 5000);
+  */
 }
 
 /* Confetti */
