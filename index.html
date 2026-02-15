@@ -36,7 +36,7 @@ html, body {
     justify-content:center;
     align-items:center;
     z-index:9999;
-    transition:opacity 0.6s ease;
+    transition:opacity 0.5s ease;
 }
 
 #loader.hidden {
@@ -59,8 +59,8 @@ html, body {
 
 <body>
 
-<!-- 🎵 GLOBAL MUSIC -->
-<audio id="music" loop autoplay>
+<!-- 🎵 AUDIO -->
+<audio id="music" loop preload="auto">
     <source src="music.mp3" type="audio/mpeg">
 </audio>
 
@@ -73,31 +73,37 @@ html, body {
 <iframe id="stageFrame" src="intro/intro.html"></iframe>
 
 <script>
+const music = document.getElementById("music");
 const frame = document.getElementById("stageFrame");
 const loader = document.getElementById("loader");
-const music = document.getElementById("music");
 
-/* ===== MUSIC AUTOPLAY FIX ===== */
+/* ===== MUSIC FIX ===== */
+
+function startMusicOnce(){
+    music.play().catch(() => {});
+    document.removeEventListener("click", startMusicOnce);
+    document.removeEventListener("touchstart", startMusicOnce);
+}
+
+document.addEventListener("click", startMusicOnce);
+document.addEventListener("touchstart", startMusicOnce);
+
+/* Try autoplay immediately */
 window.addEventListener("load", () => {
-    const playPromise = music.play();
-
-    if (playPromise !== undefined) {
-        playPromise.catch(() => {
-            // If autoplay blocked, start on first user interaction
-            document.body.addEventListener("click", () => {
-                music.play();
-            }, { once: true });
-        });
-    }
+    music.play().catch(() => {
+        // silently fallback to interaction
+    });
 });
 
 /* ===== STAGE SWITCHING ===== */
+
 function goToStage(stageName){
 
     loader.classList.remove("hidden");
     frame.classList.add("fade-out");
 
     setTimeout(()=>{
+
         switch(stageName){
             case "intro":
                 frame.src = "intro/intro.html";
@@ -115,23 +121,17 @@ function goToStage(stageName){
                 frame.src = "letter/letter.html";
                 break;
         }
-    },400);
+
+    },300);
 }
 
+/* Hide loader exactly when iframe loads */
 frame.onload = function(){
     frame.classList.remove("fade-out");
-    setTimeout(()=>{
-        loader.classList.add("hidden");
-    },300);
+    loader.classList.add("hidden");
 };
 
 window.goToStage = goToStage;
-
-window.onload = function(){
-    setTimeout(()=>{
-        loader.classList.add("hidden");
-    },800);
-};
 </script>
 
 </body>
